@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ titulo }}
+{% endblock %}
+
+{% block body %}
+	<div class="d-flex flex-column justify-content-between align-items-center mt-4 mb-2">
+		<div class="container d-flex justify-content-between align-items-center">
+			<h1>{{ titulo }}</h1>
+			<a href="{{ path('categoria')}}" class="btn btn-primary" >Lista de Categorias</a>
+		</div>
+		<p>{{ msg }}</p>
+		<div class="container">
+			{{ form(form) }}
+			</div>
+		</div>
+	{% endblock %}

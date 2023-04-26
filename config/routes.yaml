@@ -1,3 +1,35 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+  path: /
+  controller: App\Controller\DefaultController::index
+
+categoria:
+  path: /categoria
+  controller: App\Controller\CategoriaController::index
+
+categoria_adicionar:
+  path: /categoria/adicionar
+  controller: App\Controller\CategoriaController::adicionar
+
+categoria_editar:
+  path: /categoria/editar/{id}
+  controller: App\Controller\CategoriaController::editar
+
+categoria_excluir:
+  path: /categoria/excluir/{id}
+  controller: App\Controller\CategoriaController::excluir
+
+produto:
+  path: /produto
+  controller: App\Controller\ProdutoController::index
+
+produto_adicionar:
+  path: /produto/adicionar
+  controller: App\Controller\ProdutoController::adicionar
+
+produto_editar:
+  path: /produto/editar/{id}
+  controller: App\Controller\ProdutoController::editar
+
+produto_excluir:
+  path: /produto/excluir/{id}
+  controller: App\Controller\ProdutoController::excluir
