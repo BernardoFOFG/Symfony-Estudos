@@ -25,7 +25,6 @@ class CategoriaController extends AbstractController
     public function adicionar(Request $request, EntityManagerInterface $em): Response
     {
         //$em = é o objeto que vai auxiliar a execução de ações no BD
-        $msg = "";
         $categoria = new Categoria();
         $form = $this->createForm(CategoriaType::class, $categoria);
         $form->handleRequest($request);
@@ -34,31 +33,26 @@ class CategoriaController extends AbstractController
             // salvar a nova categoria no bd
             $em->persist($categoria); // salvar na memoria
             $em->flush(); // executa para o db;
-            $msg = "Categoria adicionada com sucesso";
             return $this->redirectToRoute('categoria');
         }
         $data['titulo'] = "Adicionar nova categoria";
         $data['form'] = $form;
-        $data['msg'] = $msg;
 
         return $this->renderForm('categoria/form.html.twig', $data);
     }
 
     public function editar($id, Request $request, EntityManagerInterface $em, CategoriaRepository $categoriaRepository): Response
     {
-        $msg = "";
         $categoria = $categoriaRepository->find($id); // retorna a categoria pelo $id;
         $form = $this->createForm(CategoriaType::class, $categoria);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush(); // fazendo o UPDATE da categoria no BD 
-            $msg = "Categoria atualizado com sucesso!";
             return $this->redirectToRoute('categoria');
         }
         $data['titulo'] = "Editar categoria";
         $data['form'] = $form;
-        $data['msg'] = $msg;
 
         return $this->renderForm('categoria/form.html.twig', $data);
     }

@@ -43,7 +43,7 @@ class ProdutoController extends AbstractController
     public function editar($id, Request $request, EntityManagerInterface $em, ProdutoRepository $produtoRepository): Response
     {
         $produto = $produtoRepository->find($id);
-        $form = $this->createForm(Produto::class, $produto);
+        $form = $this->createForm(ProdutoType::class, $produto);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
