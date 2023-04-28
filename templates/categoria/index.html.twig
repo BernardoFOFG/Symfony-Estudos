@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+{% if is_granted('ROLE_USER') %}
 	<div class="container d-flex justify-content-between align-items-center mt-4 mb-2">
 		<h1>{{ titulo }}</h1>
 		<a href="{{ path('categoria_adicionar') }}" class="btn btn-primary">+ Adicionar</a>
@@ -32,4 +33,4 @@
 			{% endfor %}
 		</tbody>
 	</tbody>
-</table>{% endblock %}
+</table>{% endif %}{% endblock %}

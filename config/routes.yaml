@@ -2,6 +2,14 @@ index:
   path: /
   controller: App\Controller\DefaultController::index
 
+app_registro:
+  path: /registro
+  controller: App\Controller\RegistrationController::register
+
+app_login:
+  path: /login
+  controller: App\Controller\LoginController::index
+
 categoria:
   path: /categoria
   controller: App\Controller\CategoriaController::index

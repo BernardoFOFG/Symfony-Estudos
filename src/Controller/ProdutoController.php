@@ -14,6 +14,8 @@ class ProdutoController extends AbstractController
 {
     public function index(EntityManagerInterface $em, ProdutoRepository $produtoRepository)
     {
+        // restringir o usuário para só exibir essa tela se tiver logado
+        $this->denyAccessUnlessGranted('ROLE_USER');
         // busca os produtos cadastrados
         $data['produtos'] = $produtoRepository->findAll();
         $data['titulo'] = 'Gerenciar Produtos';

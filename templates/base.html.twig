@@ -25,17 +25,27 @@
 				<a href="{{path('index')}}" class="navbar-brand">Symfony App</a>
 				<div class="collapse navbar-collapse">
 					<ul class="navbar-nav">
-						<li class="nav-item">
-							<a href="{{ path('categoria')}}" class="nav-link">Categorias</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{ path('produto')}}" class="nav-link">Produtos</a>
-						</li>
-					</ul>
-				</div>
+						{% if is_granted('ROLE_USER') %}
+							<li class="nav-item">
+								<a href="{{ path('categoria')}}" class="nav-link">Categorias</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{ path('produto')}}" class="nav-link">Produtos</a>
+							</li>
+						{% else %}
+							<li class="nav-item">
+								<a href="{{ path('app_registro')}}" class="nav-link">Registro</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{ path('app_login')}}" class="nav-link">Login</a>
+							</li>
+						</ul>
+					</div>
+				{% endif %}
 			</div>
 		</nav>
 		<div class="container d-flex flex-column justify-content-center vh-100"> {% block body %}{% endblock %}
 			</div>
 		</body>
 	</html>
+</body></html>

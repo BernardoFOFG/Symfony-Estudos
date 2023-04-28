@@ -15,6 +15,8 @@ class CategoriaController extends AbstractController
 {
     public function index(CategoriaRepository $categoriaRepository)
     {
+        // restringir o usuário para só exibir essa tela se tiver logado
+        $this->denyAccessUnlessGranted('ROLE_USER');
         // buscar no bd todas as categorias
         $data['categorias'] = $categoriaRepository->findAll();
         $data['titulo'] = 'Gerenciar Categorias';
