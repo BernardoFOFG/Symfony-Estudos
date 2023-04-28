@@ -22,8 +22,11 @@ class ProdutoType extends AbstractType
                 TextType::class,
                 [
                     'label' => 'Nome do produto: ',
+                    'required' => false,
                     'constraints' => [
-                        new NotBlank(),
+                        new NotBlank([
+                            'message' => 'O Produto não pode ser nulo.',
+                        ]),
                         new Length([
                             'min' => 4,
                             'max' => 50,

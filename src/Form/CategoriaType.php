@@ -16,8 +16,11 @@ class CategoriaType extends AbstractType
         $builder
             ->add('descricaocategoria', TextType::class, [
                 'label' => 'Descricao da categoria: ',
+                'required' => false,
                 'constraints' => [
-                    new NotBlank(),
+                    new NotBlank([
+                        'message' => 'A categoria não pode ser nula.',
+                    ]),
                     new Length([
                         'min' => 3,
                         'max' => 30,
