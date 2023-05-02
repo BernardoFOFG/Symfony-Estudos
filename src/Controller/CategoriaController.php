@@ -13,12 +13,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CategoriaController extends AbstractController
 {
-    public function index(CategoriaRepository $categoriaRepository)
+    public function index(Request $request, CategoriaRepository $categoriaRepository)
     {
         // restringir o usuário para só exibir essa tela se tiver logado
         $this->denyAccessUnlessGranted('ROLE_USER');
         // buscar no bd todas as categorias
-        $data['categorias'] = $categoriaRepository->findAll();
+        $descricaocategoria = $request->query->get('nome');
+        $data['categorias'] = is_null($descricaocategoria) ? $categoriaRepository->findAll() : $categoriaRepository->findProdutoByLikeNome($descricaocategoria);
+        $data['descricaocategoria'] = $descricaocategoria;
         $data['titulo'] = 'Gerenciar Categorias';
 
         return $this->render('categoria/index.html.twig', $data);

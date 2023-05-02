@@ -39,28 +39,36 @@ class CategoriaRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Categoria[] Returns an array of Categoria objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findProdutoByLikeNome($descricaocategoria)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.descricaocategoria LIKE :descricaocategoria')
+            ->setParameter('descricaocategoria', "%$descricaocategoria%") // usando "% %" ele não diferencia onde está a palavra(inicio, meio ou fim), ele simplesmente pega aonde ela esteja escrita
+            ->getQuery()
+            ->getResult();
+    }
+    //    /**
+    //     * @return Categoria[] Returns an array of Categoria objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('c.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    public function findOneBySomeField($value): ?Categoria
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?Categoria
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

@@ -12,12 +12,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ProdutoController extends AbstractController
 {
-    public function index(EntityManagerInterface $em, ProdutoRepository $produtoRepository)
+    public function index(Request $request, ProdutoRepository $produtoRepository)
     {
         // restringir o usuário para só exibir essa tela se tiver logado
         $this->denyAccessUnlessGranted('ROLE_USER');
         // busca os produtos cadastrados
-        $data['produtos'] = $produtoRepository->findAll();
+        $nomeproduto = $request->query->get('nome');
+        $data['produtos'] = is_null($nomeproduto) ? $produtoRepository->findAll() : $produtoRepository->findProdutoByLikeNome($nomeproduto);
+        $data['nomeproduto'] = $nomeproduto;
         $data['titulo'] = 'Gerenciar Produtos';
 
         return $this->render("produto/index.html.twig", $data);
