@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LoginController!
+{% block title %}Entrar
 {% endblock %}
 
 {% block body %}
@@ -12,9 +12,9 @@
 			{% endif %}
 			<form action="{{ path('app_login') }}" method="post" class="container col-8">
 				<input type="hidden" name="_target_path" value="/produto">
-				<label for="username" class="form-label">Login
-				</label>
-				<input type="text" class="form-control" id="username" name="_username" value="{{ lastUserName }}">
+
+				<label for="username" class="form-label">Email</label>
+				<input type="text" class="form-control" id="username" name="_username" value="{{ lastUserName }}"/>
 
 				<label for="password" class="form-label">Senha</label>
 				<input type="password" class="form-control" id="password" name="_password">

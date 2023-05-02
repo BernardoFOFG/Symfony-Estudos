@@ -18,8 +18,11 @@ security:
       lazy: true
       provider: app_user_provider
       form_login: # essa config define para onde os usuários não autenticados serão encaminhados
-        login_path: login
-        check_path: login
+        login_path: app_login
+        check_path: app_login
+      logout:
+        path: app_logout
+        target: app_login # rediciona para a página de login quando fizer o logout
 
       # activate different ways to authenticate
       # https://symfony.com/doc/current/security.html#the-firewall
